@@ -1,0 +1,20 @@
+<div class="row w-50 mt-5 mx-auto shadow d-flex align-items-center justify-content-center">
+        <div class="col-md-6">
+            <img width="320px" style="object-fit: cover;" src="https://img.freepik.com/free-vector/cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37328.jpg?w=740&t=st=1705125433~exp=1705126033~hmac=b266969963fee9b2c8fa72de051aa9386c89dac54bde10d05593e2c80f50b2ed" alt="">
+        </div>
+        <div class="col-md-6">
+            <form (ngSubmit)="login()" #loginform = "ngForm">
+                <h3 class="text-danger">Login </h3>
+                <div class="mt-4 flex-column mb-3">
+                    <input class="rounded p-1" type="email" placeholder="email address" email required [(ngModel)]="email" name="email" #useremail="ngModel">
+                     <p *ngIf="useremail.invalid && useremail.touched" class="text-danger">Invalid email</p>
+                </div>
+                <div class="mt-3 ">
+                    <input class="rounded p-1" type="password" placeholder="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" [(ngModel)]="password" name="password" #userpswd="ngModel">
+                    <p *ngIf="userpswd.invalid && userpswd.touched" class="text-danger">Invalid password</p>
+                </div>
+                <div class="mt-3 "><button type="submit" [disabled]="loginform.invalid" class="btn btn-success w-50 rounded">Login</button></div>
+            </form>
+        </div> 
+    </div>
+

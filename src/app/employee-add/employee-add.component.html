@@ -1,0 +1,41 @@
+<div class="row">
+    <div  style="height: 1000px;" class="col-md-2 ms-2 bg-info">
+        <a href="" style="text-decoration:none; color:black" ><h5 class="mt-3">Dashboard</h5></a>
+        <a href="" style="text-decoration:none; color:black" ><h5 class="mt-2">Employee List</h5></a>
+    </div>
+    <div class="col-md-9">
+        <h3 class="text-center text-primary mt-5">Add New User Details</h3>
+<div class="shadow w-50 p-3 mx-auto mt-5">
+    <form (ngSubmit)="addEmployee()" class="p-3">
+        <div>
+            <input type="text" class="form-control" placeholder="userId" name="empid" [(ngModel)]="employee.id" required pattern="[0-9]*" #employeeid="ngModel">
+            <span *ngIf="employeeid.invalid && employeeid.touched" class="text-danger">Invalid id</span>
+        </div>
+        <div>
+            <input type="text" class="form-control mt-3" placeholder="username" name="empname" [(ngModel)]="employee.name" required pattern="[a-zA-Z]{3,}$" #employeename="ngModel">
+            <span *ngIf="employeename.invalid && employeename.touched" class="text-danger">Invalid username</span>
+        </div>
+        <div>
+            <input type="email" class="form-control mt-3" placeholder="Email" name="empemail" [(ngModel)]="employee.email" required email #employeeemail="ngModel">
+            <span *ngIf="employeeemail.invalid && employeeemail.touched" class="text-danger">Invalid Email</span>
+        </div>
+        <div class="form-floating mb-3 mt-3">
+            <select  class="form-select" id="floatingSelect" aria-label="Floating label select example" name="empstatus" [(ngModel)]="employee.status" required #employeestatus="ngModel">
+                <option selected></option>
+              <option value="1">Active</option>
+              <option value="0">in active</option>
+            </select>
+            <span *ngIf="employeestatus.invalid && employeestatus.touched" class="text-danger">Invalid status</span>
+            <label for="floatingSelect">status</label>
+          </div>
+        <div class="d-flex gap-2 mt-3">
+            <button (click)="cancelEmployeee()" class="btn btn-warning">Cancel</button>
+            <button type="submit" class="btn btn-success">Add</button>
+        </div>
+       
+    </form>
+
+</div>
+    </div>
+</div>
+

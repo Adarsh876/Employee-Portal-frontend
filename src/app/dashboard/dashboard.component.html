@@ -1,0 +1,40 @@
+<div class="row">
+    <div *ngIf="showSideBar"  style="height: 1000px;" class="col-md-2 ms-2 bg-info">
+        <a routerLink="/dashboard" style="text-decoration:none; color:black" ><h2 class="mt-3">Dashboard</h2></a>
+        <a routerLink="/employees" style="text-decoration:none; color:black" ><h2 class="mt-2">Employee List</h2></a>
+    </div>
+    <div class="col-md-6 m-2 p-2">
+        <div class="bg-primary rounded p-3 shadow"><h1><i (click)="menuBar()" class="fa-solid fa-bars text-info me-4"></i>Welcome <span class="text-warning">{{adminName}}</span></h1></div>
+        <div class="row align-items-center justify-content-between m-2 mt-3">
+            <div style="height: 400px;" class="col-md-5 shadow rounded">
+                <p class="mt-2 mb-2">Calender</p>
+                <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [(selected)]="selected"></mat-calendar>
+                  </mat-card></div>
+            <div style="width: 50%;" class="col-md-5">
+                <highcharts-chart class="shadow rounded" [Highcharts]="Highcharts" [options]="chartOptions" style="width: 100%; height: 400px;display: block;"></highcharts-chart>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 m-2">
+        <div style="background-color: rgb(177, 202, 203); height: 350px;" class="d-flex flex-column justify-content-center align-items-center rounded mt-2 shadow">
+            <img *ngIf="!editAdminStatus" style="border-radius: 50%;" width="100px" [src]="profileImage" alt="no image">
+            <button *ngIf="!editAdminStatus" (click)="edit()" class="btn">Edit admin details <i class="fa-solid fa-pen-nib ms-2"></i> </button>
+            <div *ngIf="editAdminStatus" class="d-flex flex-column justify-content-center align-items-center">
+                <h1>Update Admin Details</h1>
+                <label>
+                    <input [(ngModel)]="adminDetails.picture" name="adpic" (change)="getFile($event)" type="file" style="display: none;">
+                    <img style="border-radius: 50%;" width="100px" [src]="profileImage" alt="no image"></label>
+                <input [(ngModel)]="adminDetails.name" name="adname" class="form-control mb-2  mt-2" type="text" placeholder="Name">
+                <input [(ngModel)]="adminDetails.password" name="adpswd" class="form-control mb-2" type="text" placeholder="Password">
+                <div class="d-flex align-items-center justify-content-between gap-5">
+                    <button (click)="cancel()" class="btn btn-warning">Cancel</button>
+                    <button (click)="updateAdmin()" class="btn btn-success">Update</button>
+                </div>
+            </div>
+            </div>
+        <div style="background-color: rgb(52, 104, 106) ; height: 120px;" class="rounded mt-2 d-flex justify-content-center align-items-center shadow">
+            <h3><i class="fa-solid fa-users me-2"></i>employees : {{employeeCount}}</h3>
+        </div>
+    </div>
+</div>
